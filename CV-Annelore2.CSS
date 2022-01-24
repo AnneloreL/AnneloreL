@@ -1,0 +1,553 @@
+/*  */
+
+#bloc-page /* ceci englobe l'intégralité de ce qui va s'afficher. On choisit donc là de lui déterminer une largeur (pour qu'elle ne s'étende pas indéfiniment, d'y centrer les éléments, de les mettre en colonne et en flex) */
+{
+	width: 900px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+
+/* Adaptation de la page à sa dimension avec média */
+
+@media all and (max-width: 600px) /* On lui dit que en-dessous de 600px de largeur, tout ce qui était défini, est écrasé et seul ce qui rentre dans ses parenthèses, doit être pris en compte. */
+{
+	#bloc-page
+	{
+		width: auto; /* donc là, on débloque la largeur de la page, qui peut être augmentée ou diminuée */
+	}
+
+  header p /* on modifie la taille des caractères écrits du paragraphe de l'entête, on place à gauche ce qui est écrit, et y aide (vu que inefficace pour?) en mettant une marge intérieure à droite, pour pousser sur la gauche. */
+	{
+		font-size: 0.7em;
+		text-align: left;
+		padding-right: 250px;
+	}
+
+  h1
+  {
+    color: yellow;
+		font-size: 1.2em;
+  }
+
+	section /* ma section était alignée en largeur en partie... donc je l'oriente en colonne, et je tente de centrer ses éléments aussi bien dans l'axe horizontal (align-items vu que colonne) que vertical (justify-content) */
+	{
+	  flex-direction: column;
+	  justify-content: center;
+	  align-items: center;
+	}
+
+  #banniere img /* ma bannière est imposante, prend de la place, et ne rendrait pas autant en mini, donc je la fais disparaitre */
+  {
+    display: none;
+  }
+
+  #Connaissances /* la position absolue permet de placer cet ensemble depuis le haut à gauche de la page. Là, je veux placer cet ensemble par rapport à la verticale, à une certaine distance du haut. */
+	{
+		position: absolute;
+		top: 660px;
+	}
+
+
+	#Resume /* flex, c'est l'utilisation de flex-box et de positionner des boites dans des boites dans des boites..., avec parfois plusieurs boites dans une boite parente. */
+	{
+    position: absolute;
+		display: flex;
+		justify-content: space-around; /* le justify-content permet de dire que les éléments de ce résumé (image et paragraphe), doivent être centrés mais avec des espaces entre eux et vis à vis de l'extérieur, dans leur axe principal. */
+    align-items: center; /* là, il est demandé que sur l'axe secondaire, ils soient centrés. Toute la question est donc de savoir s'ils sont en colonne ou en ligne/flex...*/
+		top: 50px; /* c'est pour positionner l'ensemble photo + paragraphe à une certaine distance du haut de la page. */
+	}
+
+  #Resume img
+  {
+    display: block; /* afin de bénéficier de l'intérêt du bloc et qu'il soit identique à l'élément paragraphe (qui est un block), je l'ai transformé en block. Pas de jaloux! */
+  }
+
+	#Resume p
+	{
+    position: relative; /* la position relative me permet de définir la position par rappot à l'ensemble auquel le résumé se rattache, et donc aussi/la photo, au passage. Enfin, je crois... */
+    height: 120px; /* ne pas confondre height:  la dimension du paragraphe lui-même, avec bottom et top qui sont la position de ce paragraphe. La dimension importe par rapport à l'autre élément, si on veut le rapprocher de ce dernier */
+		width: 250px;
+    bottom: 200px; /* c'est à 200px du bas*/
+    margin-left: auto;
+    margin-right: auto; /* là, c'est pour tenter de centrer mon paragraphe dans la page, en lui mettant les mêmes règles de distance par rapport au bord de la page à gauche et droite. */
+	}
+
+
+
+  #section2 
+	{
+		flex-direction: column;
+		position: absolute;
+    top: 1450px;
+    margin-left: 35%;
+	}
+
+  #Experiences
+  {
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  #Experiences li
+  {
+    justify-content: center;
+  }
+
+  #Coordonneesetpermis
+  {
+    position: absolute;
+    top: 1750px;
+    align-items: center;
+  }
+
+  #Permis h2
+	{
+		padding-top: 30px; /* je mets des paddings car je suis à l'intérieur d'un ensemble, qui est dans un ensemble, qui est dans un autre ensemble... et je positionne / l'ensemble hiérarchiquement juste au-dessus: coordonnées et permis */
+	}
+
+  #Permis
+	{
+		position: absolute;
+	  padding-top: 1200px;
+	}
+
+	#Coordonnees h2
+	{
+		padding-top: 30px;
+	}
+
+	#Coordonnees Li
+	{
+		height: 40px;
+	}
+
+  #Coordonnees
+	{
+		position: absolute; /* suis-je en colonne ou en ligne? A force, je ne sais plus... faudrait que je vérifie...!!! */
+		align-content: center;
+		padding-top: 1450px;
+	}
+
+  #softskill h2
+	{
+		padding-top: 30px;
+	}
+
+	#softskill li
+	{
+		justify-content: center; /* là, je ne cherche pas à ce que le texte soit centrée mais que l'ensemble contenant le texte, lui, soit centré */
+	}
+
+	#Compétences h2
+	{
+		padding-top: 30px;
+	}
+
+  #Compétences li
+	{
+		text-align: center;
+	}
+
+	#Compétences img
+	{
+		position: relative;
+		margin-right: auto;
+		margin-left: auto;
+	}
+
+}
+
+/* Configuration normale, dimension ordi et autres règles à tout */
+
+/* polices */
+
+@font-face /* permet de faire connaitre de nouvelles polices à internet, qu'on souhaite utiliser, et où les trouver */
+{
+	font-family: 'courgette';
+	src: url('polices/Courgette-Regular.ttf');
+	font-weight: normal; /* épaisseur, si gras, pas gras... */
+	font-style: normal; /* si italique, barré, etc. */
+}
+
+@font-face
+{
+	font-family: 'Caviar';
+	src: url('polices/CaviarDreams.ttf');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face
+{
+	font-family: 'Champagne';
+	src: url('polices/cac_champagne.ttf');
+	font-weight: normal;
+	font-style: normal;
+}
+
+
+
+body
+{
+	background: rgb(47, 52, 62);
+  font-family: Caviar ;
+  color: rgb(255, 255, 255);
+}
+
+h1
+{
+	font-family: courgette;
+}
+
+h2
+{
+	color: rgb(81, 163, 162);
+	text-align: center;
+}
+
+header
+{
+	font-family: 'Champagne';
+	font-size: 3em;
+}
+
+strong
+{
+  font-weight: 1000;
+  color: rgb(253, 252, 191);
+}
+
+
+
+/* liens */
+
+a /*liens non survolés*/
+{
+  color: rgb(255, 255, 255);
+	font-style: italic;
+}
+
+a:hover /* quand on survole */
+{
+  color: rgb(252, 254, 116);
+}
+
+a:visited /* quand on a cliqué et donc vu */
+{
+	color: rgb(116, 213, 254);
+}
+
+
+
+
+/* Corps */
+body
+{
+	display: flex;
+  justify-content: center;
+}
+
+h1
+{
+	text-align: center;
+	margin: 0 0 0 0px;
+}
+
+header
+{
+	display: flex;
+	flex-direction: column;
+	height: 270px;
+	justify-content: center;
+}
+
+header p
+{
+	height: 30px;
+	text-align: right;
+	margin: 0 0 0 0px;
+}
+
+section
+{
+	display: flex;
+	justify-content: center;
+}
+
+ul
+{
+	list-style-type: none; /* je ne veux pas de petit 1 etc. ni de petit rond, etc. */
+}
+
+/*section 1*/
+
+#Connaissances
+{
+	display: flex;
+	flex-direction: column;
+	margin-top: 20px;
+}
+
+#Formations
+{
+	display: flex;
+	flex-direction: column;
+	width: 300px;
+	height: 400px;
+}
+
+#Formations li
+{
+	display: flex;
+	width: 250px;
+	min-height: 40px;
+	margin-bottom: 20px;
+	margin-left: -10px;
+	margin-right: 15px;
+}
+
+#Langues
+{
+	height: 280px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	justify-items: center;
+	margin: auto;
+	margin-top: 40px;
+}
+
+#Langues Li
+{
+	display: flex;
+	min-height: 40px;
+	margin-bottom: 20px;
+  justify-content: space-between;
+}
+
+#Langues img
+{
+	width: 40px;
+	height: 40px;
+}
+
+#Permis
+{
+	display: flex;
+	flex-direction: column;
+	height: 300px;
+	margin-bottom: 100px;
+	margin-top: -30px;
+}
+
+#Permis img
+{
+	display: block;
+  width: 40px;
+  height: 40px;
+  margin-right: 10px;
+
+
+}
+#Permis li
+{
+	display: flex;
+	align-content: stretch;
+	align-items: stretch;
+	margin-bottom: 20px;
+	width: 200px;
+}
+
+#Coordonnees
+{
+	display: flex;
+	align-content: stretch;
+	flex-direction: column;
+}
+
+#Coordonnees li
+{
+	display: flex;
+	width: 300px;
+	word-wrap: break-word; /* ça c'est parce que je veux que ça revienne à la ligne et que ça n'écrive pas au-delà */
+	margin-bottom: 70px;
+	margin-left: -20px;
+	margin-top: 30px;
+}
+
+#Coordonnees img
+{
+	display: flex;
+	width: 30px;
+	height: 30px;
+}
+
+#Coordonneesetpermis
+{
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	margin-top: 20px;
+}
+
+#Resume
+{
+	display: flex;
+	text-align: center;
+	flex-direction: column;
+	min-height: 200px;
+}
+
+#Resume p
+{
+	width: 300px;
+	height: 200px;
+	text-align: center;
+	margin-top: 180px;
+	margin-left: 20px;
+	margin-right: 20px;
+}
+
+#Resume img
+{
+	width: 140px;
+	height: 180px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 200px;
+	margin-bottom: 40px;
+	border-radius: 30px / 20px;
+	box-shadow:  6px 6px 6px rgb(92, 105, 132);
+}
+
+/* section 2 */
+
+#Experiences
+{
+	display: flex;
+	flex-direction: column;
+	width: 300px;
+}
+
+#Experiences li
+{
+	width: 250px;
+	margin-right: 20px;
+	margin-left: -20px;
+	display: inline-block;
+	padding-top: 20px;
+}
+
+#softskill
+{
+	display: flex;
+	flex-direction: column;
+}
+
+#softskill li
+{
+	display: flex;
+	padding-top: 20px;
+}
+
+
+/* Ma bannière */
+
+#banniere
+{
+	display: flex;
+	height: 600px;
+	width: 900px;
+	padding-left: 10px;
+	margin-top: -100px;
+}
+
+#poste
+{
+	display: flex;
+	height: 300px;
+	width: 350px;
+  position: absolute;
+  padding-top: 160px;
+  padding-left: 230px;
+  z-index: 3;
+}
+
+.HG
+{
+	height: 280px;
+	width: 230px;
+	position: absolute;
+	padding-top: 0px;
+	margin-top: 20px;
+	margin-left: 100px;
+	padding-left: 90px;
+	z-index: 2;
+}
+
+.traitBG
+{
+	display: flex;
+	position: absolute;
+	height: 100px;
+	width: 200px;
+	padding-top: 350px;
+  z-index: 2;
+}
+
+.traitHD
+{
+	display: flex;
+	height: 170px;
+	width: 200px;
+	position: absolute;
+	padding-left: 400px;
+	padding-top: 40px;
+	z-index: 4;
+}
+
+.traitMD
+{
+	display: flex;
+	height: 300px;
+	width: 200px;
+	position: absolute;
+	padding-left: 500px;
+	margin-left: 50px;
+	margin-bottom: 100px;
+}
+
+.traitBG
+{
+	display: flex;
+	height: 180px;
+	width: 300px;
+	margin-left: 110px;
+	padding-top: 400px;
+	z-index: 4;
+}
+
+.traitBD
+{
+	display: flex;
+	height: 180px;
+	width: 200px;
+	padding-top: 400px;
+	margin-left: 500px;
+}
+
+.rouecrantee3
+{
+	display: flex;
+	height: 80px;
+	width: 80px;
+}
+
+.rouecrantee2demi
+{
+	display: flex;
+	height: 80px;
+	width: 80px;
+}
